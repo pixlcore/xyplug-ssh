@@ -1,0 +1,39 @@
+{
+	"name": "@pixlcore/xyplug-ssh",
+	"version": "1.0.0",
+	"description": "An SSH runner plugin for the xyOps workflow automation system.",
+	"author": "Joseph Huckaby <jhuckaby@pixlcore.com>",
+	"homepage": "https://github.com/pixlcore/xyplug-ssh",
+	"license": "MIT",
+	"bin": {
+		"xyplug-ssh": "index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pixlcore/xyplug-ssh"
+	},
+	"bugs": {
+		"url": "https://github.com/pixlcore/xyplug-ssh/issues"
+	},
+	"keywords": [
+		"xyops",
+		"ssh",
+		"runner",
+		"remote"
+	],
+	"files": [
+		"index.js",
+		"README.md",
+		"LICENSE.md",
+		"xyops.json"
+	],
+	"engines": {
+		"node": ">=18"
+	},
+	"dependencies": {
+		"ssh2": "^1.16.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

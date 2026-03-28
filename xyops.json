@@ -1,0 +1,125 @@
+{
+	"type": "xypdf",
+	"description": "xyOps Portable Data Object",
+	"version": "1.0",
+	"items": [
+		{
+			"type": "plugin",
+			"data": {
+				"id": "pmsshnak612ag9veb",
+				"title": "Remote SSH",
+				"enabled": true,
+				"type": "event",
+				"command": "npx -y @pixlcore/xyplug-ssh@1.0.0",
+				"script": "",
+				"kill": "parent",
+				"runner": true,
+				"notes": "Run remote commands or scripts over SSH.",
+				"icon": "console-network-outline",
+				"params": [
+					{
+						"id": "hostname",
+						"title": "SSH Hostname",
+						"type": "text",
+						"value": "",
+						"caption": "Remote hostname or IP address, e.g. `deploy.example.com` or `10.0.0.25`.",
+						"required": true
+					},
+					{
+						"id": "username",
+						"title": "Username",
+						"type": "text",
+						"value": "",
+						"caption": "SSH username to connect with.",
+						"required": true
+					},
+					{
+						"id": "port",
+						"title": "Port",
+						"type": "text",
+						"variant": "number",
+						"value": 22,
+						"caption": "SSH TCP port."
+					},
+					{
+						"id": "host_fingerprint",
+						"title": "Host Fingerprint",
+						"type": "text",
+						"value": "",
+						"caption": "Optional host key pin. Accepts `SHA256:...` or MD5 fingerprint text. Recommended for production."
+					},
+					{
+						"id": "connect_timeout_sec",
+						"title": "Connect Timeout (sec)",
+						"type": "text",
+						"variant": "number",
+						"value": 30,
+						"caption": "How long to wait for the SSH session to connect."
+					},
+					{
+						"id": "remote_env",
+						"title": "Remote Env",
+						"type": "json",
+						"value": {},
+						"caption": "Optional extra key/value pairs to send to the remote side."
+					},
+					{
+						"id": "verbose",
+						"title": "Verbose Logging",
+						"type": "checkbox",
+						"value": false,
+						"caption": "Log SSH connection details to the job log."
+					},
+					{
+						"id": "tool",
+						"title": "Run Mode",
+						"type": "toolset",
+						"caption": "",
+						"data": {
+							"tools": [
+								{
+									"id": "script",
+									"title": "Pipe Script to STDIN",
+									"description": "Export env vars remotely and pipe your script into the selected command.",
+									"fields": [
+										{
+											"id": "remote_command",
+											"title": "Remote Command",
+											"type": "text",
+											"value": "bash -se",
+											"caption": "Command to execute remotely. It will receive the script on STDIN.",
+											"required": true
+										},
+										{
+											"id": "script",
+											"title": "Script Source",
+											"type": "code",
+											"value": "#!/usr/bin/env bash\nset -euo pipefail\n\necho \"Hello from $(hostname)\"\n",
+											"caption": "Script contents to pipe into the remote command.",
+											"required": true
+										}
+									]
+								},
+								{
+									"id": "job_json",
+									"title": "Pipe Full Job JSON",
+									"description": "Send the full xyOps job JSON to a remote program that knows how to read STDIN and optionally emit XYWP.",
+									"fields": [
+										{
+											"id": "remote_command",
+											"title": "Remote Command",
+											"type": "text",
+											"value": "node /path/to/my-remote-plugin.js",
+											"caption": "Command to execute remotely. It will receive the full job JSON on STDIN.",
+											"required": true
+										}
+									]
+								}
+							]
+						}
+					}
+				]
+			}
+		}
+	]
+}
