@@ -4,6 +4,7 @@
 // Copyright (c) 2026 PixlCore LLC
 // MIT License
 
+const fs = require('fs');
 const { createHash } = require('crypto');
 const { Client } = require('ssh2');
 
@@ -36,7 +37,7 @@ const app = {
 			String(this.params.username || '').trim(),
 			this.params.port
 		);
-		const auth = resolveAuth(secrets);
+		const auth = resolveAuth(this.params, secrets);
 		const remoteCommand = String(this.params.remote_command || '').trim();
 		if (!remoteCommand) fatal('params', "Required parameter 'remote_command' was not provided.");
 		
@@ -226,11 +227,19 @@ function parseTarget(hostname, username, portFallback) {
 	return { host, port, username: user };
 }
 
-function resolveAuth(secrets) {
+function resolveAuth(params, secrets) {
 	const privateKey = resolveNamedValue('SSH_PRIVATE_KEY', secrets);
 	const passphrase = resolveNamedValue('SSH_PASSPHRASE', secrets);
 	const password = resolveNamedValue('SSH_PASSWORD', secrets);
 	const agent = process.env.SSH_AUTH_SOCK || '';
+	
+	// private key may be specified as a file path in params
+	if (params.private_key_file) {
+		try { privateKey = fs.readFileSync(params.private_key_file, 'utf8'); }
+		catch (err) {
+			fatal( 'auth', 'Failed to read private key file: ' + params.private_key_file + ": " + err );
+		}
+	}
 	
 	if (!privateKey && !password && !agent) {
 		fatal(

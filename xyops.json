@@ -10,7 +10,7 @@
 				"title": "Remote SSH",
 				"enabled": true,
 				"type": "event",
-				"command": "npx -y @pixlcore/xyplug-ssh@1.0.0",
+				"command": "npx -y @pixlcore/xyplug-ssh@1.0.1",
 				"script": "",
 				"kill": "parent",
 				"runner": true,
@@ -30,7 +30,7 @@
 						"title": "Username",
 						"type": "text",
 						"value": "",
-						"caption": "SSH username to connect with.",
+						"caption": "The SSH username to connect with.",
 						"required": true
 					},
 					{
@@ -39,7 +39,14 @@
 						"type": "text",
 						"variant": "number",
 						"value": 22,
-						"caption": "SSH TCP port."
+						"caption": "The SSH TCP port (usually `22`)."
+					},
+					{
+						"id": "private_key_file",
+						"title": "Private Key File",
+						"type": "text",
+						"value": "",
+						"caption": "Optional: If your SSH private key is stored on disk, you can enter the path to it here.  Otherwise, use a secret vault."
 					},
 					{
 						"id": "host_fingerprint",
