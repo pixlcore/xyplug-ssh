@@ -228,7 +228,7 @@ function parseTarget(hostname, username, portFallback) {
 }
 
 function resolveAuth(params, secrets) {
-	const privateKey = resolveNamedValue('SSH_PRIVATE_KEY', secrets);
+	let privateKey = resolveNamedValue('SSH_PRIVATE_KEY', secrets);
 	const passphrase = resolveNamedValue('SSH_PASSPHRASE', secrets);
 	const password = resolveNamedValue('SSH_PASSWORD', secrets);
 	const agent = process.env.SSH_AUTH_SOCK || '';

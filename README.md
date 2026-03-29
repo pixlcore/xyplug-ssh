@@ -50,6 +50,7 @@ The plugin also exports a few helper variables remotely:
 - `SSH Hostname`: Hostname or IP address
 - `Username`: SSH username
 - `Port`: SSH port
+- `Private Key File`: Optional path to private key on disk.
 - `Host Fingerprint`: Optional host key pin, recommended for production
 - `Connect Timeout`: SSH connect timeout in seconds
 - `Remote Env`: Extra key/value pairs to pass to the remote side

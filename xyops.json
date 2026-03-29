@@ -10,7 +10,7 @@
 				"title": "Remote SSH",
 				"enabled": true,
 				"type": "event",
-				"command": "npx -y @pixlcore/xyplug-ssh@1.0.1",
+				"command": "npx -y @pixlcore/xyplug-ssh@1.0.2",
 				"script": "",
 				"kill": "parent",
 				"runner": true,
