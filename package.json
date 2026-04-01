@@ -1,6 +1,6 @@
 {
 	"name": "@pixlcore/xyplug-ssh",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "An SSH runner plugin for the xyOps workflow automation system.",
 	"author": "Joseph Huckaby <jhuckaby@pixlcore.com>",
 	"homepage": "https://github.com/pixlcore/xyplug-ssh",

@@ -10,10 +10,10 @@
 				"title": "Remote SSH",
 				"enabled": true,
 				"type": "event",
-				"command": "npx -y @pixlcore/xyplug-ssh@1.0.2",
+				"command": "npx -y @pixlcore/xyplug-ssh@1.0.3",
 				"script": "",
-				"kill": "parent",
-				"runner": true,
+				"kill": "all",
+				"runner": false,
 				"notes": "Run remote commands or scripts over SSH.",
 				"icon": "console-network-outline",
 				"params": [

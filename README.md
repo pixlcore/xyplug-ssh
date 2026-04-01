@@ -18,7 +18,7 @@ This makes it useful both as a simple remote shell runner and as a transport lay
 
 ## Requirements
 
-- `npx`
+- `npx` (this comes pre-installed with xyOps and xySat)
 - Network access from the xyOps runner host to the remote SSH server
 - A POSIX-like remote host with `/bin/sh`
 - `base64` or `openssl` available on the remote host for env var bootstrapping
