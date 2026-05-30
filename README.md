@@ -34,9 +34,26 @@ The plugin looks up SSH auth from environment variables or [xyOps Secrets](https
 
 Put those in your xyOps Secret Vault when needed.
 
-Note that any secret variables that begin with `SSH_` are **not** forwarded to the remote server, by design.  Any *other* assigned xyOps secret variables are forwarded to the remote process environment.
+The plugin exports environment variables from the local xyOps job environment to the remote side, including:
 
-The plugin also exports a few helper variables remotely:
+- `XYOPS`
+- `JOB_ID`
+- `JOB_NOW`
+- `JOB_BASE_URL`
+- `data_*`
+- `workflow_*`
+- `workflow_data_*`
+- `server_data_*`
+- Event parameter IDs, except for this plugin's own SSH transport fields
+- Assigned xyOps Secret Vault variables
+- Job environment variables from `Job.env`
+- Extra variables from the `Remote Env` plugin parameter
+
+For xyOps-provided variables, the plugin copies the exact string values from `process.env` rather than rebuilding them from the job JSON.
+
+Note that any automatically-provided variables beginning with `SSH_` are **not** forwarded to the remote server, by design.  This prevents SSH auth secrets such as `SSH_PRIVATE_KEY`, `SSH_PASSPHRASE`, and `SSH_PASSWORD` from leaking into the remote process environment.
+
+The plugin also exports a few compatibility helper variables remotely:
 
 - `XYOPS_JOB_ID`
 - `XYOPS_EVENT_ID`
